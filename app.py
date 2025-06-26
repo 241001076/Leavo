@@ -20,12 +20,10 @@ def home():
         to_date = request.form["to_date"]
         recipient = request.form["recipient"]
         reason = request.form["reason"]
-        lang = request.form["language"]
 
         reason_text = reasons_en.get(reason, reasons_en["Unavoidable reasons"])
 
-        if lang == "English":
-            letter = f"""
+        letter = f"""
 To  {recipient}
 
 Respected Sir/Madam,
@@ -36,21 +34,6 @@ I am {name}, a student under your guidance, and I am writing to respectfully req
 Thank you.
 
 Yours sincerely,
-{name}
-"""
-        else:
-            letter = f"""
-அன்பிற்கினிய {recipient} அவர்களுக்கு,
-மதிப்பிற்குரிய ஐயா/அம்மையார்,
-
-நான் {name}, உங்கள் வழிகாட்டுதலின் கீழ் கல்வி பயிலும் மாணவர்.
-{from_date} முதல் {to_date} வரை விடுப்பு வேண்டுகிறேன்.
-{reason_text} பாடங்களை பின்வற்று கவனிப்பேன் என உறுதியளிக்கிறேன்.
-
-விடுப்பு வழங்குமாறு கேட்டுக்கொள்கிறேன்.
-
-மிக்க நன்றி.
-வணக்கம்,
 {name}
 """
 
@@ -68,3 +51,4 @@ Yours sincerely,
 
 if __name__ == "__main__":
     app.run(debug=True)
+
