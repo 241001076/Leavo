@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, send_file
 from fpdf import FPDF
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 os.makedirs("output", exist_ok=True)
@@ -22,16 +23,24 @@ def home():
         reason = request.form["reason"]
 
         reason_text = reasons_en.get(reason, reasons_en["Unavoidable reasons"])
+        current_date = datetime.now().strftime("%d/%m/%Y")
 
         letter = f"""
-To  {recipient}
+
+
+From:
+   {name}
+   Date: {current_date}
+
+To:
+  {recipient}
 
 Respected Sir/Madam,
 
-I am {name}, a student under your guidance, and I am writing to respectfully request leave from {from_date} to {to_date}.
+            I am {name}, a student under your guidance, and I am writing to respectfully request leave from {from_date} to {to_date}.
 {reason_text} I assure you that I will stay updated with all academic responsibilities during my absence. Kindly consider my application.
 
-Thank you.
+                                                     Thank you.
 
 Yours sincerely,
 {name}
@@ -40,10 +49,12 @@ Yours sincerely,
         filename = f"output/leave_letter_{name.replace(' ', '_')}.pdf"
         pdf = FPDF()
         pdf.add_page()
-        pdf.set_font("Arial", size=15)
+        pdf.set_font("Arial", 'B', 16)
+        pdf.cell(0, 10, "Permission Letter", ln=True, align='C')
+        pdf.ln(5)
+        pdf.set_font("Arial", size=13)
         for line in letter.strip().split('\n'):
             pdf.multi_cell(0, 10, txt=line)
-
         pdf.output(filename)
         return send_file(filename, as_attachment=True)
 
@@ -51,4 +62,6 @@ Yours sincerely,
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
 
