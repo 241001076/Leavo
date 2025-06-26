@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Excuse-o-Matic Web</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; }
+        button { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h2>🛠️ Leavo - Smart Leave Letter Generator | 🎯 MVP Build</h2>
+    <form method="post">
+        <label>Your Name:</label>
+        <input type="text" name="name" required>
+
+        <label>From Date:</label>
+        <input type="text" name="from_date" placeholder="dd/mm/yyyy" required>
+
+        <label>To Date:</label>
+        <input type="text" name="to_date" placeholder="dd/mm/yyyy" required>
+
+        <label>Recipient (HOD/Principal):</label>
+        <input type="text" name="recipient" required>
+
+        <label>Reason:</label>
+        <select name="reason">
+            {% for r in reasons %}
+            <option value="{{ r }}">{{ r }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Language:</label>
+        <select name="language">
+            <option>English</option>
+            <option>Tamil</option>
+        </select>
+
+        <button type="submit">Generate PDF</button>
+    </form>
+</body>
+</html>
