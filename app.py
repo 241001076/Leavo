@@ -33,7 +33,7 @@ Respected Sir/Madam,
 I am {name}, a student under your guidance, and I am writing to respectfully request leave from {from_date} to {to_date}.
 {reason_text} I assure you that I will stay updated with all academic responsibilities during my absence. Kindly consider my application.
 
-                                                   Thank you
+Thank you.
 
 Yours sincerely,
 {name}
@@ -57,11 +57,11 @@ Yours sincerely,
         filename = f"output/leave_letter_{name.replace(' ', '_')}.pdf"
         pdf = FPDF()
         pdf.add_page()
-        pdf.set_font("arial", size=15)
+        pdf.set_font("Arial", size=15)
         for line in letter.strip().split('\n'):
             pdf.multi_cell(0, 10, txt=line)
-        pdf.output(filename)
 
+        pdf.output(filename)
         return send_file(filename, as_attachment=True)
 
     return render_template("index.html", reasons=list(reasons_en.keys()))
