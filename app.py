@@ -20,7 +20,7 @@ def home():
         from_date = request.form["from_date"]
         to_date = request.form["to_date"]
         recipient = request.form["recipient"]
-        reason = request.form["reason"]
+        reason = request.form["reason"].strip()
         workplace = request.form["workplace"]
         location = request.form["location"]
 
