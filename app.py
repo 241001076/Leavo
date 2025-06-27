@@ -21,6 +21,8 @@ def home():
         to_date = request.form["to_date"]
         recipient = request.form["recipient"]
         reason = request.form["reason"]
+        workplace = request.form["workplace"]
+        location = request.form["location"]
 
         reason_text = reasons_en.get(reason, reasons_en["Unavoidable reasons"])
         current_date = datetime.now().strftime("%d/%m/%Y")
@@ -28,17 +30,19 @@ def home():
         letter = f"""
 
 
-From:
+From
    {name}
+   {workplace}
+   {location}
    Date: {current_date}
 
-To:
+To
   {recipient}
+  {workplace}
 
 Respected Sir/Madam,
 
-            I am {name}, a student under your guidance, and I am writing to respectfully request leave from {from_date} to {to_date}.
-{reason_text} I assure you that I will stay updated with all academic responsibilities during my absence. Kindly consider my application.
+            I am {name}, a student under your guidance, and I am writing to respectfully request leave from {from_date} to {to_date}. {reason_text} I assure you that I will stay updated with all academic responsibilities during my absence. Kindly consider my application.
 
                                                      Thank you.
 

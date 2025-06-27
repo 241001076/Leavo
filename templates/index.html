@@ -17,11 +17,14 @@
 
         <!-- Form -->
         <form method="post" class="bg-white p-6 rounded-xl shadow-lg space-y-4">
+            
+            <!--Name-->
             <div>
                 <label class="block text-gray-700 font-semibold">Your Name:</label>
                 <input type="text" name="name" required class="w-full mt-1 p-3 rounded-md border border-gray-300">
             </div>
-
+            
+            <!--Dates-->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-gray-700 font-semibold">From Date:</label>
@@ -33,6 +36,19 @@
                 </div>
             </div>
 
+            <!--ADDRESS-->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-gray-700 font-semibold">Qrganization Name:</label>
+                  <input type="text" name="workplace" placeholder="Institution/Workplace" required class="w-full mt-1 p-3 rounded-md border border-gray-300">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold">Location Details:</label>
+                    <input type="text" name="location" placeholder="City - Pincode" required class="w-full mt-1 p-3 rounded-md border border-gray-300">
+                </div>
+            </div>
+
+            <!--RECEIPIENT-->
             <div>
                 <label class="block text-gray-700 font-semibold">Recipient:</label>
                 <input type="text" name="recipient" required class="w-full mt-1 p-3 rounded-md border border-gray-300">
