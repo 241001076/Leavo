@@ -2,13 +2,14 @@ from flask import Flask, render_template, request, send_file
 from fpdf import FPDF
 from flask_sqlalchemy import SQLAlchemy
 import os
-from datetime import datetime
+from datetime import datetime, time 
 
 app = Flask(__name__)
 os.makedirs("output", exist_ok=True)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+print("DB URL:", os.environ.get("DATABASE_URL"))
 db = SQLAlchemy(app)
 
 class Submission(db.Model):
