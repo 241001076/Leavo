@@ -1,27 +1,10 @@
 from flask import Flask, render_template, request, send_file
 from fpdf import FPDF
-from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime, time 
 
 app = Flask(__name__)
 os.makedirs("output", exist_ok=True)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-print("DB URL:", os.environ.get("DATABASE_URL"))
-db = SQLAlchemy(app)
-
-class Submission(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    from_date = db.Column(db.String(20))
-    to_date = db.Column(db.String(20))
-    recipient = db.Column(db.String(100))
-    reason = db.Column(db.String(100))
-    workplace = db.Column(db.String(100))
-    location = db.Column(db.String(100))
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
 reasons_en = {
     "Sick leave": "I am feeling unwell and have been advised to take rest. I kindly request medical leave to ensure a full recovery and return with renewed focus.",
@@ -43,18 +26,6 @@ def home():
 
         reason_text = reasons_en.get(reason, reasons_en["Unavoidable reasons"])
         current_date = datetime.now().strftime("%d/%m/%Y")
-
-        new_entry = Submission(
-            name=name,
-            from_date=from_date,
-            to_date=to_date,
-            recipient=recipient,
-            reason=reason,
-            workplace=workplace,
-            location=location
-        )
-        db.session.add(new_entry)
-        db.session.commit()
 
         letter = f"""
 
@@ -93,6 +64,4 @@ Yours sincerely,
     return render_template("index.html", reasons=list(reasons_en.keys()))
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
