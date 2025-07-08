@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Leavo - Smart Leave Letter Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans">
 
-    <div class="max-w-3xl mx-auto p-6">
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-10 px-4 sm:px-6">
+        
         <!-- Header -->
         <div class="text-center mb-8">
             <img src="https://cdn-icons-png.flaticon.com/512/2202/2202112.png" alt="Leave Icon" class="w-24 mx-auto mb-4">
@@ -16,15 +18,15 @@
         </div>
 
         <!-- Form -->
-        <form method="post" class="bg-white p-6 rounded-xl shadow-lg space-y-4">
+        <form method="post" class="w-full sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-lg space-y-6">
             
-            <!--Name-->
+            <!-- Name -->
             <div>
                 <label class="block text-gray-700 font-semibold">Your Name:</label>
                 <input type="text" name="name" required class="w-full mt-1 p-3 rounded-md border border-gray-300">
             </div>
             
-            <!--Dates-->
+            <!-- Dates -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-gray-700 font-semibold">From Date:</label>
@@ -36,11 +38,11 @@
                 </div>
             </div>
 
-            <!--ADDRESS-->
+            <!-- Address -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-gray-700 font-semibold">Qrganization Name:</label>
-                  <input type="text" name="workplace" placeholder="Institution/Workplace" required class="w-full mt-1 p-3 rounded-md border border-gray-300">
+                    <label class="block text-gray-700 font-semibold">Organization Name:</label>
+                    <input type="text" name="workplace" placeholder="Institution/Workplace" required class="w-full mt-1 p-3 rounded-md border border-gray-300">
                 </div>
                 <div>
                     <label class="block text-gray-700 font-semibold">Location Details:</label>
@@ -48,12 +50,13 @@
                 </div>
             </div>
 
-            <!--RECEIPIENT-->
+            <!-- Recipient -->
             <div>
                 <label class="block text-gray-700 font-semibold">Recipient:</label>
                 <input type="text" name="recipient" required class="w-full mt-1 p-3 rounded-md border border-gray-300">
             </div>
 
+            <!-- Reason -->
             <div>
                 <label class="block text-gray-700 font-semibold">Reason:</label>
                 <select name="reason" class="w-full mt-1 p-3 rounded-md border border-gray-300">
@@ -63,6 +66,7 @@
                 </select>
             </div>
 
+            <!-- Language -->
             <div>
                 <label class="block text-gray-700 font-semibold">Language:</label>
                 <select name="language" class="w-full mt-1 p-3 rounded-md border border-gray-300">
@@ -70,8 +74,9 @@
                 </select>
             </div>
 
+            <!-- Submit Button -->
             <div class="text-center">
-                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
                     📄 Generate PDF
                 </button>
             </div>
@@ -82,4 +87,6 @@
     </div>
 </body>
 </html>
+
+
 
