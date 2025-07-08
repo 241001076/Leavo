@@ -13,6 +13,13 @@ reasons_en = {
     "Unavoidable reasons": "Due to a personal commitment of unavoidable nature, I kindly request your approval for leave."
 }
 
+subjects_en = {
+    "Sick leave": "Request for Leave due to Medical Reason",
+    "Family Emergency": "Leave Request for Family Emergency",
+    "Attending events": "Request for Leave to Attend Personal Event",
+    "Unavoidable reasons": "Leave Application due to Unavoidable Commitment"
+}
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
@@ -25,6 +32,7 @@ def home():
         location = request.form["location"]
 
         reason_text = reasons_en.get(reason, reasons_en["Unavoidable reasons"])
+        subject = subjects_en.get(reason, "Leave Application")
         current_date = datetime.now().strftime("%d/%m/%Y")
 
         letter = f"""
@@ -39,9 +47,11 @@ To
   {recipient}
   {workplace}
 
-Respected Sir/Madam,
+Subject: {subject}
 
-            I am {name}, a student under your guidance, and I am writing to respectfully request leave from {from_date} to {to_date}. {reason_text} I assure you that I will stay updated with all academic responsibilities during my absence. Kindly consider my application.
+Respected Sir/Madam,
+            
+             I am {name}, a student under your guidance, and I am writing to respectfully request leave from {from_date} to {to_date}. {reason_text} I assure you that I will stay updated with all academic responsibilities during my absence. Kindly consider my application.
 
                                                      Thank you.
 
